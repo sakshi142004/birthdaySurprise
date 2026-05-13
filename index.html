@@ -1,0 +1,243 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Birthday Surprise 💌</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<button class="music-toggle" id="musicToggle" type="button" onclick="toggleMusic()" title="Play music">♫</button>
+<audio id="birthdayAudio" loop preload="auto">
+  <source src="birthday-audio.mp3" type="audio/mpeg">
+  <source src="birthday-audio.ogg" type="audio/ogg">
+  <source src="birthday-audio.wav" type="audio/wav">
+</audio>
+
+<!-- ============ PAGE 0: PASSWORD ============ -->
+<div class="page active" id="page-password">
+  <div class="password-layout">
+    <div class="front-intro">
+      <h1 class="front-wish-title">Happy Birthday Collector 🪄🪐🥰</h1>
+
+      <div class="polaroid-wrap">
+        <img src="frontPageImage.jpeg" alt="Birthday friend photo">
+      </div>
+    </div>
+
+    <div class="password-panel">
+      <p class="passcode-label">Enter a passcode</p>
+
+      <div class="passcode-dots" id="dots">
+        <div class="passcode-box" id="d0"></div>
+        <div class="passcode-box" id="d1"></div>
+        <div class="passcode-box" id="d2"></div>
+        <div class="passcode-box" id="d3"></div>
+      </div>
+
+      <div class="wrong-reaction" id="wrongReaction">
+        <p class="wrong-msg" id="wrongMsg">Wrong password can't open</p>
+        <img class="wrong-gif" id="wrongGif" src="saynogif.webp" alt="Wrong password reaction gif">
+      </div>
+
+      <div class="numpad">
+        <button class="num-btn" onclick="numPress('1')">1</button>
+        <button class="num-btn" onclick="numPress('2')">2</button>
+        <button class="num-btn" onclick="numPress('3')">3</button>
+        <button class="num-btn" onclick="numPress('4')">4</button>
+        <button class="num-btn" onclick="numPress('5')">5</button>
+        <button class="num-btn" onclick="numPress('6')">6</button>
+        <button class="num-btn" onclick="numPress('7')">7</button>
+        <button class="num-btn" onclick="numPress('8')">8</button>
+        <button class="num-btn" onclick="numPress('9')">9</button>
+        <button class="num-btn empty"></button>
+        <button class="num-btn" onclick="numPress('0')">0</button>
+        <button class="num-btn del" onclick="numDel()">⌫</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ PAGE 1: BEARS ============ -->
+<div class="page" id="page-bears">
+  <p class="bears-title">🎂 Happy Birthday! 🎂</p>
+  <img class="page-gif wide" src="dancinggif.gif" alt="Dancing birthday gif">
+  <div class="bears-row float3d">
+    🐻🎂🐰🎁🐨
+  </div>
+  <button class="btn" onclick="goTo('page-ready')">NEXT</button>
+</div>
+
+<!-- ============ PAGE 2: ARE YOU READY ============ -->
+<div class="page" id="page-ready">
+  <p class="ready-text">Are you ready<br>for surprise?<br>🩷🩷</p>
+  <img class="page-gif" src="dancingmodeputanypage.gif" alt="Ready surprise gif">
+  <div class="btn-row">
+    <button class="btn btn-yes" onclick="goTo('page-typing')">YES</button>
+    <button class="btn btn-no" onclick="goTo('page-dare')">NO.</button>
+  </div>
+</div>
+
+<!-- ============ PAGE 3: HOW DARE YOU ============ -->
+<div class="page" id="page-dare">
+  <p class="dare-text">HOW DARE YOU!</p>
+  <img class="dare-photo" src="howdareyou.jpg" alt="How dare you reaction">
+  <button class="btn btn-try" onclick="goTo('page-ready')">TRY AGAIN</button>
+</div>
+
+<!-- ============ PAGE 4: TYPING ============ -->
+<div class="page" id="page-typing">
+  <div class="typing-sparkles">
+    <span style="left:12%;top:20%;animation-delay:0s;">✦</span>
+    <span style="left:78%;top:18%;animation-delay:0.6s;">♡</span>
+    <span style="left:18%;top:76%;animation-delay:1.1s;">✧</span>
+    <span style="left:84%;top:70%;animation-delay:1.7s;">✦</span>
+  </div>
+  <div class="message-frame">
+    <img class="message-gif" id="messageGif" src="message1page.jpg" alt="Message page image">
+    <div class="typing-text" id="typingEl"></div>
+  </div>
+</div>
+
+<!-- ============ PAGE 5: MAKE A WISH ============ -->
+<div class="page" id="page-wish">
+  <span class="star" style="left:15%;top:25%;animation-delay:0s;">✦</span>
+  <span class="star" style="left:80%;top:30%;animation-delay:0.5s;">✦</span>
+  <span class="star" style="left:10%;top:65%;animation-delay:1s;">✦</span>
+  <span class="star" style="left:75%;top:70%;animation-delay:1.5s;">✦</span>
+  <p class="wish-text">Make a wish ✨</p>
+  <img class="page-gif small" src="whilewishlinggif.gif" alt="Make a wish gif">
+
+  <!-- SVG Cake -->
+  <svg class="cake-svg float3d" viewBox="0 0 160 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Candles -->
+    <rect x="42" y="30" width="7" height="24" rx="3" fill="#ffb3ba"/>
+    <rect x="64" y="22" width="7" height="32" rx="3" fill="#df8588"/>
+    <rect x="86" y="28" width="7" height="26" rx="3" fill="#fa6d86"/>
+    <rect x="108" y="24" width="7" height="30" rx="3" fill="#8d1260"/>
+    <!-- Flames -->
+    <ellipse cx="45.5" cy="27" rx="5" ry="7" fill="#fff2a3" class="candle-flame"/>
+    <ellipse cx="67.5" cy="19" rx="5" ry="7" fill="#ffb3ba" class="candle-flame" style="animation-delay:0.1s"/>
+    <ellipse cx="89.5" cy="25" rx="5" ry="7" fill="#fa6d86" class="candle-flame" style="animation-delay:0.2s"/>
+    <ellipse cx="111.5" cy="21" rx="5" ry="7" fill="#fff2a3" class="candle-flame" style="animation-delay:0.15s"/>
+    <!-- Cake top layer -->
+    <rect x="30" y="54" width="100" height="30" rx="6" fill="#ffb3ba"/>
+    <!-- Wave decoration -->
+    <path d="M30 68 Q42 60 54 68 Q66 76 78 68 Q90 60 102 68 Q114 76 126 68 Q132 64 130 72" stroke="#fff" stroke-width="2.5" fill="none"/>
+    <!-- Cake bottom layer -->
+    <rect x="22" y="82" width="116" height="42" rx="8" fill="#df606f"/>
+    <!-- Bottom decoration -->
+    <path d="M22 98 Q35 90 48 98 Q61 106 74 98 Q87 90 100 98 Q113 106 126 98 Q133 94 138 98" stroke="#fff" stroke-width="2.5" fill="none"/>
+    <!-- Plate -->
+    <ellipse cx="80" cy="124" rx="66" ry="8" fill="#df8588"/>
+    <!-- Cherries -->
+    <circle cx="60" cy="84" r="6" fill="#5b0737"/>
+    <circle cx="80" cy="82" r="6" fill="#5b0737"/>
+    <circle cx="100" cy="84" r="6" fill="#5b0737"/>
+  </svg>
+
+  <button class="btn" id="blowBtn" onclick="blowCandles()">🌬️ BLOW</button>
+</div>
+
+<!-- ============ PAGE 6: HAPPY BIRTHDAY ============ -->
+<div class="page" id="page-hbd">
+  <span class="star" style="left:20%;top:20%;animation-delay:0s;">✦</span>
+  <span class="star" style="left:75%;top:25%;animation-delay:0.8s;">✦</span>
+  <img class="page-gif small" src="happybirthdaygif.gif" alt="Happy birthday gif">
+  <p class="hbd-text">
+    तेरी हंसी का कोई मोल नहीं है<br>
+    तेरी मेरी दोस्ती में कोई झोल नही है<br>
+    और क्या कहूं तेरे बारे में<br>
+    मेरी जिन्दगी में तुझसे... ज्यादा कोई अनमोल नही है<br>
+    HAPPY BIRTHDAY YAARA 🥰
+  </p>
+
+  <!-- Same cake but smaller -->
+  <svg class="cake-svg" style="width:130px;height:110px;" viewBox="0 0 160 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="42" y="30" width="7" height="24" rx="3" fill="#ffb3ba"/>
+    <rect x="64" y="22" width="7" height="32" rx="3" fill="#df8588"/>
+    <rect x="86" y="28" width="7" height="26" rx="3" fill="#fa6d86"/>
+    <rect x="108" y="24" width="7" height="30" rx="3" fill="#8d1260"/>
+    <ellipse cx="45.5" cy="27" rx="5" ry="7" fill="#fff2a3"/>
+    <ellipse cx="67.5" cy="19" rx="5" ry="7" fill="#ffb3ba"/>
+    <ellipse cx="89.5" cy="25" rx="5" ry="7" fill="#fa6d86"/>
+    <ellipse cx="111.5" cy="21" rx="5" ry="7" fill="#fff2a3"/>
+    <rect x="30" y="54" width="100" height="30" rx="6" fill="#ffb3ba"/>
+    <path d="M30 68 Q42 60 54 68 Q66 76 78 68 Q90 60 102 68 Q114 76 126 68 Q132 64 130 72" stroke="#fff" stroke-width="2.5" fill="none"/>
+    <rect x="22" y="82" width="116" height="42" rx="8" fill="#df606f"/>
+    <ellipse cx="80" cy="124" rx="66" ry="8" fill="#df8588"/>
+    <circle cx="60" cy="84" r="6" fill="#5b0737"/>
+    <circle cx="80" cy="82" r="6" fill="#5b0737"/>
+    <circle cx="100" cy="84" r="6" fill="#5b0737"/>
+  </svg>
+
+  <button class="btn" onclick="goTo('page-gifts')">NEXT 🎁</button>
+</div>
+
+<!-- ============ PAGE 7: GIFTS ============ -->
+<div class="page" id="page-gifts">
+  <p class="gift-title">Gift for you 🎀</p>
+  <img class="page-gif small" src="whileopenthegiftgif.gif" alt="Open gift gif">
+  <div class="gifts-row">
+    <div class="gift-item" onclick="openGift(1)" title="Click to open!">🎁</div>
+    <div class="gift-item" onclick="openGift(2)" title="Click to open!">🎁</div>
+    <div class="gift-item" onclick="openGift(3)" title="Click to open!">🎁</div>
+  </div>
+  <p class="gift-hint">click on a gift to open 🎀</p>
+  <div id="giftMsg" class="gift-message-card"></div>
+  <div id="giftNextBtn" style="display:none;margin-top:10px;">
+    <button class="btn" onclick="goTo('page-miss')">NEXT ✨</button>
+  </div>
+</div>
+
+<!-- ============ PAGE 8: I MISS US ============ -->
+<div class="page" id="page-miss">
+  <div class="lipstick-bg" id="lipstickBg"></div>
+  <p class="miss-title">BEST FRIENDS FOREVER</p>
+  <div class="polaroid-row">
+    <div class="polaroid-miss"><div class="pic"><img src="WhatsApp Image 2026-05-12 at 1.47.24 PM (1).jpeg" alt="Best friend memory 1"></div></div>
+    <div class="polaroid-miss"><div class="pic"><img src="WhatsApp Image 2026-05-12 at 1.47.24 PM.jpeg" alt="Best friend memory 2"></div></div>
+    <div class="polaroid-miss"><div class="pic"><img src="WhatsApp Image 2026-05-12 at 1.47.25 PM.jpeg" alt="Best friend memory 3"></div></div>
+    <div class="polaroid-miss"><div class="pic"><img src="WhatsApp Image 2026-05-12 at 1.47.26 PM.jpeg" alt="Best friend memory 4"></div></div>
+  </div>
+  <p class="together-text">YAARI FOREVER</p>
+  <button class="btn" onclick="goTo('page-letter')">NEXT 💌</button>
+</div>
+
+<!-- ============ PAGE 9: LOVE LETTER ============ -->
+<div class="page" id="page-letter">
+  <img class="page-gif small" src="lastpagegif.gif" alt="Last page gif">
+  <h2 class="last-birthday-title">again happy birthday collector</h2>
+  <div class="letter-wrap">
+    <span class="stamp-icon">🐻</span>
+    <div class="photos-stack">
+      <div class="photo-small"><img src="WhatsApp Image 2026-05-12 at 1.52.33 PM (1).jpeg" alt="Best friend memory 5"></div>
+      <div class="photo-small"><img src="WhatsApp Image 2026-05-12 at 1.52.33 PM.jpeg" alt="Best friend memory 6"></div>
+      <div class="photo-small"><img src="WhatsApp Image 2026-05-12 at 1.57.34 PM.jpeg" alt="Best friend memory 7"></div>
+      <div class="photo-small"><img src="WhatsApp Image 2026-05-12 at 1.52.32 PM.jpeg" alt="Best friend memory 8"></div>
+    </div>
+    <div class="envelope-body">
+      <div class="letter-paper">
+        <span>
+          ‌हंसी लगती है उसके चेहरे पर चांद से प्यारी<br>
+          वो दोस्त है मेरी जान से प्यारी<br>
+          ‌मेरे हस्ते हुए चेहरे से पढ़ लेती है मेरी उदासी<br>
+          क्युकी वो दोस्त है मेरी जान से प्यारी<br>
+          कभी टूटे नहीं उससे ये यारी<br>
+          क्युकी वो दोस्त है मेरी जान से प्यारी<br>
+          ‌लड़ाई करती है मुझसे बहुत सारी<br>
+          क्युकी वो दोस्त है मेरी जान से प्यारी
+        </span>
+      </div>
+      <div class="heart-seal">❤️</div>
+      <div class="love-stamp">LOVE💕</div>
+    </div>
+  </div>
+  <button class="btn" onclick="goTo('page-bears')" style="margin-top:16px;">🔁 REPLAY</button>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
+
+
